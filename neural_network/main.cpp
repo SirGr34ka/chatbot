@@ -28,7 +28,17 @@ int main()
     input_hidden_weights.matrix[1][1] = 0.13;
 
     // Hidden neurons
-    Matrix hidden = input * input_hidden_weights;
+    Matrix hidden ( 1 , 2 );
+
+    try
+    {
+        Matrix temp = input * input_hidden_weights;
+        hidden = temp;
+    }
+    catch( const char* msg )
+    {
+        std::cerr << msg << std::endl;
+    }
 
     // Activation function
     hidden.matrix[0][0] = sigmoid( hidden.matrix[0][0] );
@@ -44,7 +54,19 @@ int main()
     hidden_output_weights.matrix[1][0] = -2.3;
 
     // Output neuron
-    Matrix output = hidden * hidden_output_weights;
+    Matrix output ( 1 , 1 );
+
+    try
+    {
+        Matrix temp = hidden * hidden_output_weights;
+        output = temp;
+    }
+    catch( const char* msg )
+    {
+        std::cerr << msg << std::endl;
+        
+        return 1;
+    }
 
     // Activation fuction
     output.matrix[0][0] = sigmoid( output.matrix[0][0] );

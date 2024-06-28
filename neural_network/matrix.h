@@ -4,9 +4,11 @@
 
 class Matrix
 {
-    public:
     size_t rows;
     size_t columns;
+
+    public:
+    
     double** matrix;
 
     // Конструкторы
@@ -14,6 +16,10 @@ class Matrix
 
     // Конструктор копирования
     Matrix(Matrix& copied_matrix);
+
+    // Гетеры
+    size_t getRows() const;
+    size_t getColumns() const;
 
     // Перегрузка операторов
     Matrix operator * (Matrix& right_matrix);

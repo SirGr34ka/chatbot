@@ -29,8 +29,23 @@ Matrix::Matrix( Matrix& copied_matrix )
     *this = copied_matrix;
 }
 
+size_t Matrix::getRows() const
+{
+    return rows;
+}
+
+size_t Matrix::getColumns() const
+{
+    return columns;
+}
+
 Matrix Matrix::operator * ( Matrix& right_matrix )
 {
+    if ( columns != right_matrix.rows )
+    {
+        throw "Left matrix columns not equal right matrix rows!";
+    }
+
     const size_t m = rows;
     const size_t n = right_matrix.columns;
     const size_t k = columns;
@@ -55,6 +70,11 @@ Matrix Matrix::operator * ( Matrix& right_matrix )
 
 Matrix& Matrix::operator = ( Matrix& right_matrix )
 {
+    if ( ( rows != right_matrix.rows ) || ( columns != right_matrix.columns ) )
+    {
+        throw "Rows or columns of both matrices are not equal!";
+    }
+    
     const size_t m = rows;
     const size_t n = columns;
     double** right_matrix_ptr = right_matrix.matrix;
@@ -85,8 +105,8 @@ Matrix::~Matrix()
 
 std::ostream& operator << ( std::ostream &os , Matrix& matrix )
 {
-    const size_t m = matrix.rows;
-    const size_t n = matrix.columns;
+    const size_t m = matrix.getRows();
+    const size_t n = matrix.getColumns();
     double** matrix_ptr = matrix.matrix;
 
     for ( size_t i = 0 ; i < m ; ++i )
@@ -106,8 +126,8 @@ std::ostream& operator << ( std::ostream &os , Matrix& matrix )
 
 std::istream& operator >> (std::istream &is, Matrix& matrix)
 {
-    const size_t m = matrix.rows;
-    const size_t n = matrix.columns;
+    const size_t m = matrix.getColumns();
+    const size_t n = matrix.getRows();
     double** matrix_ptr = matrix.matrix;
 
     for ( size_t i = 0 ; i < m ; ++i )
