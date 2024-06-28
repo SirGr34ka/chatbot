@@ -80,5 +80,7 @@ int main()
     std::cout << pow( 1 - output.matrix[0][0] , 2 ) << std::endl;
     Neuro neuro(1, output.matrix[0][0]);
     neuro.DeltaHidden(1, hidden, hidden_output_weights);
+    neuro.DeltaHiddenOutput(hidden_output_weights, hidden, 0.7, 0.3);
+    neuro.DeltaHiddenInput(input_hidden_weights, input, 0.7, 0.3);
     return 0;
 }

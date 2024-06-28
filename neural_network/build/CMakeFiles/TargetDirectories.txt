@@ -1,3 +1,0 @@
-E:/SummerPractice/chatbot/neural_network/build/CMakeFiles/neural_network.dir
-E:/SummerPractice/chatbot/neural_network/build/CMakeFiles/edit_cache.dir
-E:/SummerPractice/chatbot/neural_network/build/CMakeFiles/rebuild_cache.dir
