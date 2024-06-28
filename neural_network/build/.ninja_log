@@ -1,0 +1,14 @@
+# ninja log v5
+31	781	7412855713888220	CMakeFiles/neural_network.dir/matrix.cpp.obj	e632fac25ed54596
+11	752	7412857946307362	CMakeFiles/neural_network.dir/main.cpp.obj	7f193f9392b4b525
+753	975	7412857948477565	neural_network.exe	5ec896d9cf3ed640
+7	781	7412863111491763	CMakeFiles/neural_network.dir/main.cpp.obj	7f193f9392b4b525
+782	1014	7412863113768965	neural_network.exe	5ec896d9cf3ed640
+7	819	7412865838800994	CMakeFiles/neural_network.dir/main.cpp.obj	7f193f9392b4b525
+820	1044	7412865840958779	neural_network.exe	5ec896d9cf3ed640
+7	888	7412866902150130	CMakeFiles/neural_network.dir/main.cpp.obj	7f193f9392b4b525
+889	1123	7412866904433929	neural_network.exe	5ec896d9cf3ed640
+7	1050	7412867567156126	CMakeFiles/neural_network.dir/main.cpp.obj	7f193f9392b4b525
+1052	1279	7412867569387372	neural_network.exe	5ec896d9cf3ed640
+19	922	7412868960341749	CMakeFiles/neural_network.dir/main.cpp.obj	7f193f9392b4b525
+923	1151	7412868962621207	neural_network.exe	5ec896d9cf3ed640

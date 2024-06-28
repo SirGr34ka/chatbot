@@ -12,7 +12,7 @@ class Matrix
     double** matrix;
 
     // Конструкторы
-    Matrix(const size_t& m, const size_t& n);
+    Matrix(const int m, const int n);
 
     // Конструктор копирования
     Matrix(Matrix& copied_matrix);

@@ -1,16 +1,16 @@
 #include <iostream>
 #include "matrix.h"
 
-Matrix::Matrix( const size_t& m, const size_t& n )
+Matrix::Matrix( const int m, const int n )
 {
     rows = m;
     columns = n;
 
     matrix = new double* [ rows ];
         
-    for ( size_t i = 0 ; i < rows ; ++i )
+    for ( int i = 0 ; i < rows ; ++i )
     {
-        matrix[i] = new double [ columns ]{};
+        matrix[i] = new double [ columns ]{0};
     }
 }
 

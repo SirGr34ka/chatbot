@@ -2,6 +2,7 @@
 #include <math.h>
 
 #include "matrix.h"
+#include "neuro.h"
 
 double sigmoid( const double value )
 {
@@ -77,6 +78,7 @@ int main()
     // Error
     std::cout << "Error:" << std::endl;
     std::cout << pow( 1 - output.matrix[0][0] , 2 ) << std::endl;
-
+    Neuro neuro(1, output.matrix[0][0]);
+    neuro.DeltaHidden(1, hidden, hidden_output_weights);
     return 0;
 }
