@@ -66,6 +66,29 @@ Matrix Matrix::operator * ( Matrix& right_matrix )
     return result_matrix;
 }
 
+std::vector<double> Matrix::operator * (std::vector<double>& right_vector)
+{
+    if (rows != right_vector.size())
+    {
+        throw "Right vector columns not equal left matrix rows!";
+    }
+
+    const size_t n = columns;
+    const size_t k = rows;
+
+    std::vector<double> result_vector(n);
+
+    for (size_t i = 0; i < n; ++i)
+    {
+        for (size_t j = 0; j < k; ++j)
+        {
+            result_vector[i] += right_vector[j] * matrix[j][i];
+        }
+    }
+
+    return result_vector;
+}
+
 Matrix& Matrix::operator = ( Matrix& right_matrix )
 {
     if ( ( rows != right_matrix.rows ) || ( columns != right_matrix.columns ) )

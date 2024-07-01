@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <vector>
 
 #include "matrix.h"
 #include "neuro.h"
@@ -9,16 +10,28 @@ double sigmoid( const double value )
     return 1 / ( 1 + exp( -value ) );
 }
 
+void lay_output(const std::vector<double>& lay)
+{
+    for (size_t i = 0; i < lay.size(); ++i)
+    {
+        std::cout << lay[i] << " ";
+    }
+
+    std::cout << std::endl;
+
+    return;
+}
+
 int main()
 {
     // Input neurons
-    Matrix input ( 1 , 2 );
+    std::vector<double> input(2);
 
-    input[0][0] = 1;
-    input[0][1] = 0;
+    input[0] = 1;
+    input[1] = 0;
 
     std::cout << "Input neurons:" << std::endl;
-    std::cout << input;
+    lay_output(input);
 
     // Input -> Hidden weights
     Matrix input_hidden_weights ( 2 , 2 );
@@ -29,11 +42,11 @@ int main()
     input_hidden_weights[1][1] = 0.13;
 
     // Hidden neurons
-    Matrix hidden ( 1 , 2 );
+    std::vector<double> hidden(2);
 
     try
     {
-        Matrix temp = input * input_hidden_weights;
+        std::vector<double> temp = input_hidden_weights * input;
         hidden = temp;
     }
     catch( const char* msg )
@@ -42,11 +55,11 @@ int main()
     }
 
     // Activation function
-    hidden[0][0] = sigmoid( hidden[0][0] );
-    hidden[0][1] = sigmoid( hidden[0][1] );
+    hidden[0] = sigmoid( hidden[0] );
+    hidden[1] = sigmoid( hidden[1] );
 
     std::cout << "Hidden neurons:" << std::endl;
-    std::cout << hidden;
+    lay_output(hidden);
 
     // Hidden -> Output weights
     Matrix hidden_output_weights ( 2 , 1 );
@@ -55,11 +68,11 @@ int main()
     hidden_output_weights[1][0] = -2.3;
 
     // Output neuron
-    Matrix output ( 1 , 1 );
+    std::vector<double> output(1);
 
     try
     {
-        Matrix temp = hidden * hidden_output_weights;
+        std::vector<double> temp = hidden_output_weights * hidden;
         output = temp;
     }
     catch( const char* msg )
@@ -70,16 +83,16 @@ int main()
     }
 
     // Activation fuction
-    output[0][0] = sigmoid( output[0][0] );
+    output[0] = sigmoid( output[0] );
 
     std::cout << "Output neuron:" << std::endl;
-    std::cout << output;
+    lay_output(output);
 
     // Error
     std::cout << "Error:" << std::endl;
-    std::cout << pow( 1 - output[0][0] , 2 ) << std::endl;
+    std::cout << pow( 1 - output[0] , 2 ) << std::endl;
 
-    Neuro neuro(1, output[0][0]);
+    Neuro neuro(1, output[0]);
 
     neuro.DeltaHidden(1, hidden, hidden_output_weights);
     neuro.DeltaHiddenOutput(hidden_output_weights, hidden, 0.7, 0.3);

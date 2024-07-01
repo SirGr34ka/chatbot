@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
 
 class Matrix
 {
@@ -22,6 +23,7 @@ class Matrix
 
     // Перегрузка операторов
     Matrix operator * ( Matrix& right_matrix );
+    std::vector<double> operator * (std::vector<double>& right_vector);
     Matrix& operator = ( Matrix& right_matrix );
     double*& operator [] ( const size_t index );
 
