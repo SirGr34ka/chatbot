@@ -92,11 +92,13 @@ int main()
     std::cout << "Error:" << std::endl;
     std::cout << pow( 1 - output[0] , 2 ) << std::endl;
 
+    // Training
     Neuro neuro(1, output[0]);
 
     neuro.DeltaHidden(1, hidden, hidden_output_weights);
     neuro.DeltaHiddenOutput(hidden_output_weights, hidden, 0.7, 0.3);
     neuro.DeltaHiddenInput(input_hidden_weights, input, 0.7, 0.3);
+    neuro.deltsOutput();
     
     return 0;
 }
