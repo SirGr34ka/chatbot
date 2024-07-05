@@ -10,9 +10,9 @@ class Neuro
 {
     public:
         double delta_output;
-        std::vector<std::vector<double>> delta_hidden_{1, std::vector<double>(2, 0)};
-        std::vector<std::vector<double>> delta_hidden_output{2, std::vector<double>(1, 0)};
-        std::vector<std::vector<double>> delta_hidden_input{2, std::vector<double>(2, 0)};
+        std::vector<double> delta_hidden_{ 2, 0 };
+        Matrix delta_hidden_output{ 2, 1 };
+        Matrix delta_hidden_input{ 2, 2 };
 
         Neuro(int ideal, double output);
 

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "matrix.h"
 
-Matrix::Matrix( const int m, const int n )
+Matrix::Matrix( const size_t m, const size_t n )
 {
     rows = m;
     columns = n;

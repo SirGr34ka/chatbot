@@ -12,7 +12,7 @@ class Matrix
     public:
 
     // Конструкторы
-    Matrix( const int m , const int n );
+    Matrix( const size_t m , const size_t n );
 
     // Конструктор копирования
     Matrix( Matrix& copied_matrix );

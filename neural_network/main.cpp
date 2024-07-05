@@ -24,6 +24,7 @@ void lay_output(const std::vector<double>& lay)
 
 int main()
 {
+    // Get output neuron process
     // Input neurons
     std::vector<double> input(2);
 
@@ -91,14 +92,60 @@ int main()
     // Error
     std::cout << "Error:" << std::endl;
     std::cout << pow( 1 - output[0] , 2 ) << std::endl;
-
-    // Training
+    
+    // Training process
     Neuro neuro(1, output[0]);
 
     neuro.DeltaHidden(1, hidden, hidden_output_weights);
     neuro.DeltaHiddenOutput(hidden_output_weights, hidden, 0.7, 0.3);
     neuro.DeltaHiddenInput(input_hidden_weights, input, 0.7, 0.3);
     neuro.deltsOutput();
+
+    // Get output neuron process again
+    // Input neurons
+    std::cout << "Input neurons:" << std::endl;
+    lay_output(input);
+
+    // Hidden neurons
+    try
+    {
+        std::vector<double> temp = input_hidden_weights * input;
+        hidden = temp;
+    }
+    catch (const char* msg)
+    {
+        std::cerr << msg << std::endl;
+    }
+
+    // Activation function
+    hidden[0] = sigmoid(hidden[0]);
+    hidden[1] = sigmoid(hidden[1]);
+
+    std::cout << "Hidden neurons:" << std::endl;
+    lay_output(hidden);
+
+    // Output neuron
+    try
+    {
+        std::vector<double> temp = hidden_output_weights * hidden;
+        output = temp;
+    }
+    catch (const char* msg)
+    {
+        std::cerr << msg << std::endl;
+
+        return 1;
+    }
+
+    // Activation fuction
+    output[0] = sigmoid(output[0]);
+
+    std::cout << "Output neuron:" << std::endl;
+    lay_output(output);
+
+    // Error
+    std::cout << "Error:" << std::endl;
+    std::cout << pow(1 - output[0], 2) << std::endl;
     
     return 0;
 }
