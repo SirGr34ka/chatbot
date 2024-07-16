@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
+#include <regex>
 #include <curl/curl.h>
+#include "gumbo.h"
 #include "parser.h"
 
 int main() {
@@ -10,11 +12,13 @@ int main() {
 
     curl_global_init(CURL_GLOBAL_DEFAULT);
     curl = curl_easy_init();
-
-    // Эксперименты с LIBCURL
+    std::string sitename;
+    std::cout << "Введите полную ссылку на веб-страницу: \n";
+    std::cin >> sitename;
     
+    // часть curl
     if(curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://www.dns-shop.ru");
+        curl_easy_setopt(curl, CURLOPT_URL, sitename);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         res = curl_easy_perform(curl);
@@ -25,9 +29,11 @@ int main() {
     }
     curl_global_cleanup();
     
-
-    // Планируется модифицировать эту часть с помощью модуля gumbo (или другого, если будет необходимо)
-    std::cout << readBuffer << std::endl;
-
+    // std::cout << readBuffer << std::endl; 
+    
+    // часть gumbo
+    GumboOutput* output = gumbo_parse(readBuffer.c_str());
+    search_for_prices(output->root);
+    gumbo_destroy_output(&kGumboDefaultOptions, output);
     return 0;
 }
