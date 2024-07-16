@@ -29,7 +29,7 @@ int main() {
     }
     curl_global_cleanup();
     
-    // std::cout << readBuffer << std::endl; 
+    // std::cout << readBuffer << std::endl;
     
     // часть gumbo
     GumboOutput* output = gumbo_parse(readBuffer.c_str());
