@@ -1,0 +1,3 @@
+[submodule "Telegram-Bot-Api-Cpp"]
+	path = Telegram-Bot-Api-Cpp
+	url = https://github.com/deni2312/Telegram-Bot-Api-Cpp
