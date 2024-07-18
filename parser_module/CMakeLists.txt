@@ -1,3 +1,11 @@
+include(FetchContent)
+FetchContent_Declare(
+    gumbo-module
+    GIT_REPOSITORY https://github.com/google/gumbo-parser.git
+    GIT_TAG master
+)
+FetchContent_MakeAvailable(gumbo-module)
+
 cmake_minimum_required(VERSION 3.10)
 project(parser)
 
@@ -10,7 +18,7 @@ include_directories(C:/msys64/mingw64/include)
 link_directories(C:/msys64/mingw64/lib)
 # Добавление зависимостей
 find_package(CURL REQUIRED)
-find_package(Gumbo REQUIRED) 
+#find_package(Gumbo REQUIRED) 
 #find_package(unofficial-gumbo CONFIG REQUIRED) - альтернативный путь
 
 add_executable(parser main.cpp parser.cpp)
