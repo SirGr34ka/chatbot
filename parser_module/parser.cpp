@@ -15,7 +15,7 @@ void search_for_prices(GumboNode* node) {
 
     GumboVector* children = &node->v.element.children;
     
-    for (int i = 0; i < children->length; ++i) {
+    for (size_t i = 0; i < children->length; ++i) {
         GumboNode* child = static_cast<GumboNode*>(children->data[i]);
         
         if (child->type == GUMBO_NODE_TEXT) {

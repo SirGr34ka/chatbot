@@ -8,12 +8,13 @@
 int main() {
     CURL* curl;
     CURLcode res;
+    int something;
     std::string readBuffer;
 
     curl_global_init(CURL_GLOBAL_DEFAULT);
     curl = curl_easy_init();
     std::string sitename;
-    std::cout << "Введите полную ссылку на веб-страницу: \n";
+    std::cout << "Write the url-site: \n";
     std::cin >> sitename;
     
     // часть curl
@@ -27,6 +28,8 @@ int main() {
         
         curl_easy_cleanup(curl);
     }
+    std::cout << "Waiting..";
+    std::cin >> something;
     curl_global_cleanup();
     
     // std::cout << readBuffer << std::endl;
