@@ -1,0 +1,140 @@
+#include <iostream>
+#include <string>
+#include <regex>
+#include <curl/curl.h>
+#include "gumbo.h"
+#include "parser.h"
+#include "algorithm"
+#include "string"
+#include "main.h"
+#include <iomanip>
+#include <fstream>
+
+std::string request(std::string word) {
+  CURLcode res_code = CURLE_FAILED_INIT;
+  CURL * curl = curl_easy_init();
+  std::string result;
+  std::string url = "https://www.euronics.ee/en/search/" + word; // сайт на котором происходит парсинг
+
+  curl_global_init(CURL_GLOBAL_ALL);
+
+  if (curl) {
+    curl_easy_setopt(curl,
+      CURLOPT_WRITEFUNCTION,
+      static_cast < curl_write > ([](char * contents, size_t size,
+        size_t nmemb, std::string * data) -> size_t {
+        size_t new_size = size * nmemb;
+        if (data == NULL) {
+          return 0;
+        }
+        data -> append(contents, new_size);
+        return new_size;
+      }));
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, & result);
+    curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "simple scraper");
+
+    res_code = curl_easy_perform(curl);
+
+    if (res_code != CURLE_OK) {
+      return curl_easy_strerror(res_code);
+    }
+
+    curl_easy_cleanup(curl);
+  }
+
+  curl_global_cleanup();
+
+  return result;
+}
+
+std::string extract_text(GumboNode *node)
+{
+  if (node->type == GUMBO_NODE_TEXT)
+  {
+    return std::string(node->v.text.text);
+  }
+  else if (node->type == GUMBO_NODE_ELEMENT &&
+           node->v.element.tag != GUMBO_TAG_SCRIPT &&
+           node->v.element.tag != GUMBO_TAG_STYLE)
+  {
+    std::string contents = "";
+    GumboVector *children = &node->v.element.children;
+    for (unsigned int i = 0; i < children->length; ++i)
+    {
+      std::string text = extract_text((GumboNode *)children->data[i]);
+      if (i != 0 && !text.empty())
+      {
+        contents.append("");
+      }
+ 
+      contents.append(str_replace(":", ">", text));
+    }
+ 
+    return contents;
+  }
+  else
+  {
+    return "";
+  }
+}
+
+std::string find_definitions(GumboNode *node)
+{
+  std::string res = "";
+  std::fstream text;
+  text.open("data.txt", std::ios::app);
+  GumboAttribute *attr;
+  if (node->type != GUMBO_NODE_ELEMENT)
+  {
+    return res;
+  }
+
+  if ((attr = gumbo_get_attribute(&node->v.element.attributes, "class")) &&
+      strstr(attr->value, "product-card vertical   ") != NULL)
+  {
+    text << std::setw(8) << "Model: " << gumbo_get_attribute(&node->v.element.attributes, "data-product-name")->value << std::endl;
+    text << std::setw(8) << "Price: " << gumbo_get_attribute(&node->v.element.attributes, "data-product-price")->value << std::endl;
+    std::cout << std::setw(8) << "Model: " << gumbo_get_attribute(&node->v.element.attributes, "data-product-name")->value << std::endl;
+    std::cout << std::setw(8) << "Price: " << gumbo_get_attribute(&node->v.element.attributes, "data-product-price")->value << std::endl;
+  }
+  GumboVector *children = &node->v.element.children;
+  for (int i = 0; i < children->length; ++i)
+  {
+    res += find_definitions(static_cast<GumboNode *>(children->data[i]));
+  }
+  text.close();
+  return res;
+}
+
+std::string scrape(std::string markup)
+{
+  std::string res = "";
+  GumboOutput *output = gumbo_parse_with_options(&kGumboDefaultOptions, markup.data(), markup.length());
+ 
+  res += find_definitions(output->root);
+ 
+  gumbo_destroy_output(&kGumboDefaultOptions, output);
+  
+  return res;
+}
+
+std::string str_replace(std::string search, std::string replace, std::string &subject)
+{
+  size_t count;
+  for (std::string::size_type pos{};
+       subject.npos != (pos = subject.find(search.data(), pos, search.length()));
+       pos += replace.length(), ++count)
+  {
+    subject.replace(pos, search.length(), replace.data(), replace.length());
+  }
+ 
+  return subject;
+}
+
+std::string strtolower(std::string str)
+{
+  std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+ 
+  return str;
+}

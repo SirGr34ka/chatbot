@@ -1,21 +1,14 @@
 cmake_minimum_required(VERSION 3.10.2)
-project(TgBot)
-find_package(Threads REQUIRED)
-find_package(OpenSSL REQUIRED)
-find_package(Boost COMPONENTS system REQUIRED)
-find_package(CURL)
-include_directories(${OPENSSL_INCLUDE_DIR} ${Boost_INCLUDE_DIR})
-if (CURL_FOUND)
-    include_directories(${CURL_INCLUDE_DIRS})
-    add_definitions(-DHAVE_CURL)
-endif()
+project(testbt)
+add_executable(testbt main.cpp)
+target_link_libraries(testbt C:/msys64/mingw64/lib/libboost_system-mt.a)
+target_link_libraries(testbt C:/Users/konst/vcpkg/installed/x64-windows/lib/libssl.lib)
+target_link_libraries(testbt C:/Users/konst/vcpkg/installed/x64-windows/lib/TgBot.lib)
+target_link_libraries(testbt -lssl -lcrypto -lpthread)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lTgBot -lboost_system -lC:/Users/konst/vcpkg/installed/x64-windows/include/tgbot")
 
-add_executable(TgBot main.cpp)
-
-target_link_libraries(TgBot C:/Users/konst/vcpkg/installed/x64-windows/lib/TgBot.lib ${CMAKE_THREAD_LIBS_INIT} ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES} ${CURL_LIBRARIES})
-
-add_custom_command(
-    TARGET TgBot
-    POST_BUILD
-    COMMAND TgBot
-)
+# add_custom_command(
+#     TARGET testbt
+#     POST_BUILD
+#     COMMAND testbt
+# )
