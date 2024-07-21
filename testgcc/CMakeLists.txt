@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.5.0)
+project(test)
+set(CMAKE_CXX_STANDARD 14)
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+add_executable(test main.cpp logic.cpp)
+
+target_link_libraries(test C:/msys64/mingw64/lib/libcurl.a)
+target_link_libraries(test C:/msys64/mingw64/lib/libgumbo.a)
+target_link_libraries(test -lcurl -lgumbo)
