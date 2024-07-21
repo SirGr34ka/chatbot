@@ -15,6 +15,6 @@ int main(int argc, char **argv)
  
   std::string res = request(arg);
   std::cout << scrape(res) << std::endl;
- 
+  std::cout << std::endl;
   return EXIT_SUCCESS;
 }

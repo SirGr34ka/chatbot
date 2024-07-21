@@ -1,0 +1,60 @@
+ Model: Apple iPhone 14, 128 GB, midnight - Smartphone
+ Price: 769.99
+ Model: Motorola Edge 40 Pro, 256 GB, black - Smartphone
+ Price: 599.99
+ Model: Xiaomi Redmi Note 12S, 256 GB, black - Smartphone
+ Price: 199.99
+ Model: Apple iPhone 14 Plus, 256 GB, purple - Smartphone
+ Price: 999.99
+ Model: Apple iPhone 14 Plus, 256 GB, blue - Smartphone
+ Price: 999.99
+ Model: Motorola Razr 40 Ultra, 256 GB, black - Smartphone
+ Price: 799.99
+ Model: Motorola Razr 40 Ultra, 256 GB, magneta - Smartphone
+ Price: 799.99
+ Model: Xiaomi 13T Pro, 512 GB, black - Smartphone
+ Price: 619.99
+ Model: Xiaomi Redmi Note 13 Pro+ 5G, 512 GB, black - Smartphone
+ Price: 449.99
+ Model: Xiaomi Redmi Note 13 Pro+ 5G, 512 GB, purple - Smartphone
+ Price: 449.99
+ Model: Xiaomi Redmi Note 13 Pro+ 5G, 512 GB, white - Smartphone
+ Price: 449.99
+ Model: Xiaomi Redmi Note 13 Pro, 256 GB, black - Smartphone
+ Price: 269.99
+ Model: Xiaomi Redmi Note 13, 256 GB, black - Smartphone
+ Price: 229.99
+ Model: Xiaomi Redmi Note 13, 256 GB, blue - Smartphone
+ Price: 229.99
+ Model: Xiaomi Redmi Note 13, 256 GB, green - Smartphone
+ Price: 229.99
+ Model: Samsung Galaxy S24+, 512 GB, gray - Smartphone
+ Price: 949.99
+ Model: Samsung Galaxy xCover7, 128 GB, black - Smartphone
+ Price: 319.99
+ Model: Samsung Galaxy Flip6, 512 GB, blue - Smartphone
+ Price: 1329
+ Model: Samsung Galaxy Flip6, 512 GB, silver shadow - Smartphone
+ Price: 1329
+ Model: Samsung Galaxy Fold6, 256 GB, silver shadow - Smartphone
+ Price: 2019
+ Model: Samsung Galaxy Fold6, 1TB, silver shadow - Smartphone
+ Price: 2379
+ Model: Samsung Galaxy Flip6, 512 GB, mint green - Smartphone
+ Price: 1329
+ Model: Apple iPhone 12, 64 GB, green - Smartphone
+ Price: 569.99
+ Model: Apple iPhone 11, 128 GB, white - Smartphone
+ Price: 549.99
+ Model: Apple iPhone 15 Pro Max, 256 GB, white - Smartphone
+ Price: 1379
+ Model: Apple iPhone 15 Pro Max, 256 GB, blue - Smartphone
+ Price: 1379
+ Model: Apple iPhone 15 Pro Max, 512 GB, black - Smartphone
+ Price: 1629
+ Model: Apple iPhone 15 Pro Max, 512 GB, white - Smartphone
+ Price: 1629
+ Model: Apple iPhone 15 Pro Max, 512 GB, beige - Smartphone
+ Price: 1629
+ Model: Apple iPhone 15 Pro Max, 1 TB, beige - Smartphone
+ Price: 1889

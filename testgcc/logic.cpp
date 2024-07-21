@@ -7,6 +7,8 @@
 #include "algorithm"
 #include "string"
 #include "main.h"
+#include <iomanip>
+#include <fstream>
 
 std::string request(std::string word) {
   CURLcode res_code = CURLE_FAILED_INIT;
@@ -80,6 +82,8 @@ std::string extract_text(GumboNode *node)
 std::string find_definitions(GumboNode *node)
 {
   std::string res = "";
+  std::fstream text;
+  text.open("data.txt", std::ios::app);
   GumboAttribute *attr;
   if (node->type != GUMBO_NODE_ELEMENT)
   {
@@ -87,18 +91,17 @@ std::string find_definitions(GumboNode *node)
   }
 
   if ((attr = gumbo_get_attribute(&node->v.element.attributes, "class")) &&
-      strstr(attr->value, "product-card__heading") != NULL || ((attr = gumbo_get_attribute(&node->v.element.attributes, "class")) &&
-      strstr(attr->value, "price") != NULL))
+      strstr(attr->value, "product-card vertical   ") != NULL)
   {
-    res += extract_text(node);
+    text << std::setw(8) << "Model: " << gumbo_get_attribute(&node->v.element.attributes, "data-product-name")->value << std::endl;
+    text << std::setw(8) << "Price: " << gumbo_get_attribute(&node->v.element.attributes, "data-product-price")->value << std::endl;
   }
- 
   GumboVector *children = &node->v.element.children;
   for (int i = 0; i < children->length; ++i)
   {
     res += find_definitions(static_cast<GumboNode *>(children->data[i]));
   }
- 
+  text.close();
   return res;
 }
 
@@ -110,7 +113,7 @@ std::string scrape(std::string markup)
   res += find_definitions(output->root);
  
   gumbo_destroy_output(&kGumboDefaultOptions, output);
- 
+  
   return res;
 }
 
