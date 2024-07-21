@@ -9,6 +9,6 @@
 
 Последовательность сборки:
   # 1. Парсер
-  Для работы парсера, необходимы библиотеки CURL и GUMBO. Установка и подключение через MSYS или VCPKG. В качестве примера будет использоваться MSYS.
-Gumbo: pacman -S mingw-w64-x86_64-gumbo-parser и CURL: pacman -S mingw-w64-x86_64-curl. После установки библиотек с помощью CMake Tools создаем build папку в parser_module, выбирая GCC в качестве компилятора.
+  For the parser to work, the CURL and GUMBO libraries are needed. Installation and connection via MSYS or VCPKG. MSYS will be used as an example.
+Gumbo: pacman -S mingw-w64-x86_64-gumbo-parser and CURL: pacman -S mingw-w64-x86_64-curl. After installing the libraries using CMake Tools, create a build folder in parser_module, choosing GCC as the compiler.
   # 2. Телеграм бот
